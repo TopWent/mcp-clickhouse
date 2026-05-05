@@ -1,0 +1,25 @@
+# Build output
+/bin/
+/dist/
+/mcp-clickhouse
+/mcp-clickhouse.exe
+
+# Vendored deps (we use modules)
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Environment files
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+*.out
+coverage.html

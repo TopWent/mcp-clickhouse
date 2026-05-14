@@ -114,9 +114,6 @@ func TestRunQuery_ReadWriteSkipsValidator(t *testing.T) {
 	}
 	tool := &RunQuery{DB: fake, ReadOnly: false}
 
-	// Validator is skipped: a DROP would normally be rejected, but in
-	// ReadWrite mode it should reach the DB. We assert it was forwarded;
-	// the fake just returns canned results.
 	if _, err := tool.Call(context.Background(),
 		json.RawMessage(`{"query":"DROP TABLE x"}`)); err != nil {
 		t.Fatalf("Call: %v", err)

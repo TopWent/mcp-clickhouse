@@ -146,8 +146,6 @@ func TestEnforceReadOnly_AttackPatterns(t *testing.T) {
 }
 
 func TestEnforceReadOnly_SemicolonInsideStringIsAllowed(t *testing.T) {
-	// Semicolons inside strings, identifiers, and comments must not trigger
-	// the multi-statement rejection.
 	cases := []string{
 		`SELECT 'a;b;c' FROM t`,
 		`SELECT "col;name" FROM t`,

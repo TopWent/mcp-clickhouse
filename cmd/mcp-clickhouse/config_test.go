@@ -61,9 +61,6 @@ func TestMode_UnmarshalText(t *testing.T) {
 	}
 }
 
-// TestLoadConfig exercises every observable behavior of loadConfig: defaults,
-// each individual validation error, and successful overrides. Each subtest
-// resets the relevant env vars via t.Setenv so cases stay isolated.
 func TestLoadConfig(t *testing.T) {
 	cases := []struct {
 		name    string
@@ -236,9 +233,6 @@ func TestLoadConfig(t *testing.T) {
 	}
 }
 
-// clearConfigEnv blanks every env var loadConfig touches so each subtest
-// starts from a deterministic baseline. t.Setenv restores prior values
-// when the test exits.
 func clearConfigEnv(t *testing.T) {
 	t.Helper()
 	for _, key := range []string{

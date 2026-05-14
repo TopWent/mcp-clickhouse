@@ -63,9 +63,6 @@ func TestOpen_RejectsInvalidConfig(t *testing.T) {
 	}
 }
 
-// fakeQuerier is the canonical fake used by tools tests in other packages.
-// We keep the type here close to the interface it implements so changes to
-// Querier surface as compile errors in this package, not downstream.
 type fakeQuerier struct {
 	result *QueryResult
 	err    error
@@ -82,7 +79,6 @@ func (f *fakeQuerier) Ping(_ context.Context) error {
 }
 
 func TestQuerierInterface_FakeImplements(t *testing.T) {
-	// Compile-time check that fakeQuerier satisfies Querier.
 	var _ Querier = (*fakeQuerier)(nil)
 
 	f := &fakeQuerier{
@@ -110,7 +106,6 @@ func TestQuerierInterface_FakeImplements(t *testing.T) {
 }
 
 func TestQueryResult_TruncatedFlag(t *testing.T) {
-	// Assert struct shape so downstream consumers can rely on the field name.
 	r := &QueryResult{Truncated: true}
 	if !r.Truncated {
 		t.Error("Truncated field should be assignable and readable")

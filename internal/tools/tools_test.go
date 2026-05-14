@@ -10,7 +10,6 @@ import (
 	chpkg "github.com/TopWent/mcp-clickhouse/internal/clickhouse"
 )
 
-// fakeQuerier is a controlled implementation of chpkg.Querier for tool tests.
 type fakeQuerier struct {
 	gotQuery string
 	gotArgs  []any
@@ -26,7 +25,6 @@ func (f *fakeQuerier) Query(_ context.Context, query string, args ...any) (*chpk
 
 func (f *fakeQuerier) Ping(_ context.Context) error { return nil }
 
-// stubTool satisfies Tool with deterministic outputs for registry tests.
 type stubTool struct {
 	name string
 }

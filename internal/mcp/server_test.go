@@ -11,8 +11,6 @@ import (
 	"testing"
 )
 
-// run feeds input to a Server and returns each newline-delimited response
-// line as a parsed Response. EOF on input terminates Serve.
 func run(t *testing.T, register func(*Server), input string) []Response {
 	t.Helper()
 	s := NewServer(slog.New(slog.NewTextHandler(io.Discard, nil)))
@@ -183,8 +181,6 @@ func TestServer_RPCErrorInWrappedChainPreserved(t *testing.T) {
 		})
 	}, `{"jsonrpc":"2.0","id":11,"method":"explode"}`+"\n")
 
-	// Wrapping with errors.New (no %w) should NOT preserve the *Error
-	// because the chain is broken; we expect CodeInternalError fallback.
 	if len(got) != 1 {
 		t.Fatalf("got %d responses", len(got))
 	}

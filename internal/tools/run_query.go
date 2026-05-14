@@ -9,8 +9,6 @@ import (
 	"github.com/TopWent/mcp-clickhouse/internal/safety"
 )
 
-// RunQuery executes SQL. When ReadOnly is true, queries pass through
-// safety.EnforceReadOnly before reaching the database.
 type RunQuery struct {
 	DB       chpkg.Querier
 	ReadOnly bool

@@ -10,10 +10,8 @@ import (
 	chpkg "github.com/TopWent/mcp-clickhouse/internal/clickhouse"
 )
 
-// queryRecorder records each Query call for tools that issue more than one.
 type queryRecorder struct {
-	calls []recordedCall
-	// results queues up responses in order; if exhausted, returns errResultsExhausted.
+	calls   []recordedCall
 	results []*chpkg.QueryResult
 	errs    []error
 	idx     int
@@ -159,7 +157,6 @@ func TestDescribeTable_TableNotFound(t *testing.T) {
 	if !strings.Contains(res.Content[0].Text, "missing") {
 		t.Errorf("error text should mention table name: %q", res.Content[0].Text)
 	}
-	// Only the info query should have run; columns query is skipped.
 	if len(rec.calls) != 1 {
 		t.Errorf("expected 1 query, got %d", len(rec.calls))
 	}
